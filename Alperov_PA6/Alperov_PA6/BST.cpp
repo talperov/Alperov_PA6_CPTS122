@@ -1,6 +1,93 @@
 #include "BST.h"
 
+BST::BST()
+{
+	pRoot = nullptr;
+	string morseFile = "MorseTable.txt";
+	openFile(morseFile);
+}
 
+BST::~BST()
+{
+	deleteRec(pRoot);
+	pRoot = nullptr;
+	cout << "Destructor Activated" << endl;
+}
+
+bool BST::isEmpty() const
+{
+	return pRoot == nullptr;
+}
+
+void BST::insertRec(BSTNode* pNode, char English, string Morse)
+{
+	if (!pNode)
+	{
+		pNode = new BSTNode(English, Morse);
+		return;
+	}
+
+	if (English < pNode->getEnglish())
+	{
+		if (!pNode->getLeft())
+		{
+			pNode->setLeft(new BSTNode(English, Morse));
+		}
+		else
+		{
+			insertRec(pNode->getLeft(), English, Morse);
+		}
+	}
+	else
+	{
+		if (!pNode->getRight())
+		{
+			pNode->setRight(new BSTNode(English, Morse));
+		}
+		else
+		{
+			insertRec(pNode->getRight(), English, Morse);
+		}
+	}
+}
+
+void BST::insert(char English, string Morse)
+{
+	if (!pRoot)
+	{
+		pRoot = new BSTNode(English, Morse);
+	}
+	else
+	{
+		insertRec(pRoot, English, Morse);
+	}
+}
+
+string BST::searchRec(BSTNode* pNode, char Searching) const
+{
+	if (!pNode)
+	{
+		return "";
+	}
+
+	if (Searching == pNode->getEnglish())
+	{
+		return pNode->getMorse();
+	}
+	else if (Searching < pNode->getEnglish())
+	{
+		return searchRec(pNode->getLeft(), Searching);
+	}
+	else
+	{
+		return searchRec(pNode->getRight(), Searching);
+	}
+}
+
+string BST::search(char Searching) const
+{
+	return searchRec(pRoot, Searching);
+}
 
 void BST::printRec(BSTNode* pNode)
 {
@@ -14,6 +101,17 @@ void BST::printRec(BSTNode* pNode)
 	printRec(pNode->getRight());
 }
 
+void BST::print()
+{
+	if (isEmpty())
+	{
+		cout << "BST is Empty." << endl;
+		return;
+	}
+
+	printRec(pRoot);
+}
+
 void BST::deleteRec(BSTNode* pNode)
 {
 	if (pNode)
@@ -24,109 +122,24 @@ void BST::deleteRec(BSTNode* pNode)
 	}
 }
 
-BST::BST()
-{
-	pRoot = nullptr;
-}
-
-BST::~BST()
-{
-	deleteRec(pRoot);
-	pRoot = nullptr;
-	cout << "Destructor Activated" << endl; // Remember to delete this.
-}
-
-bool BST::isEmpty() const
-{
-	return pRoot == nullptr;
-}
-
-void BST::insert(char English, string Morse)
-{
-	if (!pRoot)
-	{
-		pRoot = new BSTNode(English, Morse);
-		return;
-
-	}
-
-	BSTNode* pCur = pRoot;
-
-	while (true)
-	{
-		if (English < pCur->getEnglish())
-		{
-			if (!pCur->getLeft())
-			{
-				pCur->setLeft(new BSTNode(English, Morse));
-				break;
-			}
-			pCur = pCur->getLeft();
-		}
-		else
-		{
-				if (!pCur->getRight())
-				{
-					pCur->setRight(new BSTNode(English, Morse));
-					break;
-				}
-				pCur = pCur->getRight();
-		}
-	}
-}
-
-
-void BST::print() 
-{
-	if (isEmpty())
-	{
-		cout << "BST is Empty." << endl;
-		return;
-	}
-
-	 printRec(pRoot); 
-}
-
-string BST::search(char Searching) const
-{
-	BSTNode* pCur = pRoot;
-
-	while (pCur != nullptr)
-	{
-		if (Searching == pCur->getEnglish())
-		{
-			return pCur->getMorse();
-		}
-		else if (Searching < pCur->getEnglish())
-		{
-			pCur = pCur->getLeft();
-		}
-		else
-		{
-			pCur = pCur->getRight();
-		}
-	}
-	return "";
-}
-
 void BST::openFile(string& infile)
 {
-	char letter;
-	string MorseCode;
 	ifstream DataFile(infile);
-	
-	
+
 	if (!DataFile)
 	{
 		cout << "File Failed Opening." << endl;
 		return;
 	}
 
+	char letter;
+	string MorseCode;
+
 	while (DataFile >> letter >> MorseCode)
 	{
 		insert(letter, MorseCode);
 	}
-	
+
 	DataFile.close();
 }
 

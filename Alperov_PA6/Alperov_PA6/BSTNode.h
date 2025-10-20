@@ -6,36 +6,31 @@ using std::string;
 
 class BSTNode
 {
-		
 private:
 
 	char English; // English Text Character
 	string Morse; // Morse Code
-	BSTNode* pLeft; // Child Pointers
-	BSTNode* pRight; // CHild Pointers
+	BSTNode* pLeft; // Left child
+	BSTNode* pRight; // Right child
 
 public:
 
-	//Constructors Copy Constructors Destructors
+	// Constructors & Destructor
 	BSTNode();
 	BSTNode(char English, string Morse);
 	~BSTNode();
 
-	//getters
+	// Getters
 	BSTNode* getLeft();
 	BSTNode* getRight();
 	char getEnglish();
 	string getMorse();
 
-	//setters
+	// Setters
 	void setLeft(BSTNode* Left);
 	void setRight(BSTNode* Right);
 	void setEnglish(char EnglishText);
 	void setMorse(string MorseCode);
-
-	//members
-	
-	//will add member functions if needed.
-
 };
+
 

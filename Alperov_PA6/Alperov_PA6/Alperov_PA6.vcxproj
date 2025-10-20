@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClCompile Include="BST.cpp" />
     <ClCompile Include="BSTNode.cpp" />
+    <ClCompile Include="Conversion.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -134,6 +135,7 @@
   <ItemGroup>
     <ClInclude Include="BST.h" />
     <ClInclude Include="BSTNode.h" />
+    <ClInclude Include="Conversion.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

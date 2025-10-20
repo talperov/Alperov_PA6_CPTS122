@@ -1,6 +1,5 @@
 #include "BSTNode.h"
 using std::cout;
-using std::cin;
 using std::endl;
 
 BSTNode::BSTNode()
@@ -9,10 +8,9 @@ BSTNode::BSTNode()
 	Morse = "";
 	pLeft = nullptr;
 	pRight = nullptr;
-
 }
 
-BSTNode::BSTNode(char English, std::string Morse)
+BSTNode::BSTNode(char English, string Morse)
 {
 	this->English = English;
 	this->Morse = Morse;
@@ -22,46 +20,45 @@ BSTNode::BSTNode(char English, std::string Morse)
 
 BSTNode::~BSTNode()
 {
-	cout << "Destructor Activated" << endl; // Remember to delete this
+	//cout << "Destructor Activated" << endl; // optional
 }
 
 BSTNode* BSTNode::getLeft()
 {
-	return this->pLeft;
+	return pLeft;
 }
 
 BSTNode* BSTNode::getRight()
 {
-	return this->pRight;
+	return pRight;
 }
 
 char BSTNode::getEnglish()
 {
-	return this->English;
+	return English;
 }
 
 string BSTNode::getMorse()
 {
-	return this->Morse;
+	return Morse;
 }
 
 void BSTNode::setLeft(BSTNode* Left)
 {
-	this->pLeft = Left;
+	pLeft = Left;
 }
 
 void BSTNode::setRight(BSTNode* Right)
 {
-	this->pRight = Right;
+	pRight = Right;
 }
 
 void BSTNode::setEnglish(char EnglishText)
 {
-	this->English = EnglishText;
+	English = EnglishText;
 }
 
 void BSTNode::setMorse(string MorseCode)
 {
-	this->Morse = MorseCode;
+	Morse = MorseCode;
 }
-
