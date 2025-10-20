@@ -11,7 +11,7 @@ BST::~BST()
 {
 	deleteRec(pRoot);
 	pRoot = nullptr;
-	cout << "Destructor Activated" << endl;
+	//cout << "Destructor Activated" << endl; // remember to delete this
 }
 
 bool BST::isEmpty() const

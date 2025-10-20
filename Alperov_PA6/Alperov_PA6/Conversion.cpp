@@ -76,5 +76,4 @@ void Conversion::Display(string& text, string Morse)
 {
 	cout << "Written Code: " << text << endl;
 	cout << "Morse Code:   " << Morse << endl;
-	cout << endl;
 }

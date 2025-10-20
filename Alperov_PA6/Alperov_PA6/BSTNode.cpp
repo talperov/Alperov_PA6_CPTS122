@@ -1,6 +1,4 @@
 #include "BSTNode.h"
-using std::cout;
-using std::endl;
 
 BSTNode::BSTNode()
 {
